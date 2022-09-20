@@ -16,6 +16,9 @@ class CityDetailViewController: UIViewController {
     @IBOutlet weak var projectedHighLabel: UILabel!
     @IBOutlet weak var projectedLowLabel: UILabel!
     
+    // Receiver
+    var city: City?
+    
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,7 @@ class CityDetailViewController: UIViewController {
     
     //MARK: - Methods
     func updateViews() {
-        let city = CityController.sharedInstance.cities[0]
+        guard let city = city else { return }
         self.view.backgroundColor = city.currentTemp <= 80.0 ? .cyan : .red
         cityNameLabel.text = city.name
         currentStatusLabel.text = city.currentStatus
